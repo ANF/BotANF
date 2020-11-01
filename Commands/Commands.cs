@@ -23,5 +23,10 @@ namespace BotANF.Commands
                 .Build();
             await ctx.Channel.SendMessageAsync(embed: latency);
         }
+        [Command("F")]
+        private async Task Ping()
+        {
+            await ReplyAsync("F");
+        }
     }
 }
