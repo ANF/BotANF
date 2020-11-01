@@ -1,0 +1,8 @@
+{
+    "Token": "Discord Token",
+    "Version": [
+        "int - Rewrite",
+        "int - Minor",
+        "int - Patch"
+    ]
+}
