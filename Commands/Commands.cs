@@ -23,5 +23,14 @@ namespace BotANF.Commands
                 .Build();
             await ctx.Channel.SendMessageAsync(embed: latency);
         }
+        [Command("F")]
+        private async Task F()
+        {
+            await ReplyAsync("F");
+        }
+        [Command("say")]
+        [Summary("say what user gave as input")]
+        public async Task Say([Remainder] [Summary("What shoukd the bot say")] string echo)
+            => ReplyAsync(echo);
     }
 }
