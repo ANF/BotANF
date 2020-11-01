@@ -8,7 +8,8 @@
 <p align="center">
     <a href="#building--running">Building & running</a> •
     <a href="#versioning">Versioning</a> •
-    <a href="https://github.com/ANF-Studsios/BotANF/blob/master/LICENSE">License</a> •
-    <a href="https://github.com/ANF-Studsios/BotANF/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a> •
-    <a href="https://github.com/ANF-Studsios/BotANF/blob/master/CONTRIBUTING.md">Contributing</a>
+    <a href="https://github.com/ANF-Studios/BotANF/blob/master/LICENSE">License</a> •
+    <a href="https://github.com/ANF-Studios/BotANF/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a> •
+    <a href="https://github.com/ANF-Studios/BotANF/blob/master/CONTRIBUTING.MD">Contributing</a>
+    <a href="https://github.com/ANF-Studios/BotANF/blob/master/CHANGELOG.MD">Changelog</a>
 </p>
