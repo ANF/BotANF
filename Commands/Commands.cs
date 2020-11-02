@@ -12,6 +12,7 @@ namespace BotANF.Commands
     ///</summary>
     public class Utility : BaseCommandModule
     {
+        //Latency command
         [Command("latency"), Aliases("ping")]
         [Cooldown(3, 120, CooldownBucketType.User)]
         [Description("Gets the latency of the current server.")]
@@ -23,14 +24,21 @@ namespace BotANF.Commands
                 .Build();
             await ctx.Channel.SendMessageAsync(embed: latency);
         }
-        [Command("F")]
-        private async Task F()
-        {
-            await ReplyAsync("F");
-        }
-        [Command("say")]
-        [Summary("say what user gave as input")]
-        public Task SayAsync([Remainder] [Summary("What shoukd the bot say")] string echo)
-            => ReplyAsync(echo);
+
+        //F command
+        [Command("F"), Aliases("f")]
+        [RequiresRole("Member")]
+        [Cooldown(3, 120, CooldownBucketType.User)]
+        [Description("Returns F")]
+        public async Task SayF()
+            => await ReplyAsync("F");
+
+        //Echo command
+        [Command("say"), Aliases("Say")]
+        [RequiresRole("Member")]
+        [Cooldown(3, 120, CooldownBucketType.User)]
+        [Description("say what user gave as input")]
+        public async Task ReturnEcho([Remainder] [Summary("What should the bot say")] string echo)
+            => await ReplyAsync(echo);
     }
 }
