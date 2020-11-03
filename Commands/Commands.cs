@@ -35,7 +35,7 @@ namespace BotANF.Commands
         //Echo command
         [Command("Say"), Aliases("say")]
         [RequiresRole("Member")]
-        [Description("say what user gave as input")]
+        [Description("Say what user gave as input")]
         public async Task RepeatUser([Remainder] [Summary("What should the bot say")] string echo)
             => await ReplyAsync(echo);
     }
