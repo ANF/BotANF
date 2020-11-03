@@ -26,19 +26,17 @@ namespace BotANF.Commands
         }
 
         //F command
-        [Command("F"), Aliases("f")]
+        [Command("F")]
         [RequiresRole("Member")]
-        [Cooldown(3, 120, CooldownBucketType.User)]
-        [Description("Returns F")]
+        [Description("Replies with ||[REDACTED]||")]
         public async Task SayF()
             => await ReplyAsync("F");
 
         //Echo command
-        [Command("say"), Aliases("Say")]
+        [Command("Say"), Aliases("say")]
         [RequiresRole("Member")]
-        [Cooldown(3, 120, CooldownBucketType.User)]
         [Description("say what user gave as input")]
-        public async Task ReturnEcho([Remainder] [Summary("What should the bot say")] string echo)
+        public async Task RepeatUser([Remainder] [Summary("What should the bot say")] string echo)
             => await ReplyAsync(echo);
     }
 }
