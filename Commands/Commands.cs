@@ -24,4 +24,21 @@ namespace BotANF.Commands
             await ctx.Channel.SendMessageAsync(embed: latency);
         }
     }
+
+    [RequireUserPermission(GuildPermission.Administrator, Group = "Permission")]
+    public class AdminModule : BaseCommandModule
+    {
+        [Command("ban")]
+        [RequireBotPermission(GuildPermission.BanMembers)]
+        [Description ("Bans a user permanently from the server.")]
+        public Task BanAsync(CommandContext ctx, IUser user) 
+        {
+            Context.Guild.AddBanAsync(user);
+            DiscordEmbed banned = new DiscordEmbedBuilder()
+                .WithColor(DiscordColor.CornflowerBlue)
+                .WithDescription($"{user.Mention} was banned from this server.")
+                .Build();
+            await ctx.Channel.SendMessageAsync(embed: banned);
+        }
+    }
 }
