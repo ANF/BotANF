@@ -27,4 +27,5 @@ Make sure you have the required `Config.json` file which should look like the [s
 
 ## Discord Server
 Of course, there is no bot without its discord server. Feel free to join it
+
 [![ANF Studios](https://discord.com/api/guilds/732064655396044840/embed.png?style=banner3)](https://discord.gg/fKWpK7A)
