@@ -10,5 +10,8 @@ namespace BotANF
 
         [JsonPropertyName("Version")]
         public IList<int> Version { get; set; }
+
+        [JsonPropertyName("Rules")]
+        public IList<string> Rules { get; set; }
     }
 }
