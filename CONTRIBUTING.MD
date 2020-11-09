@@ -22,12 +22,59 @@ Make sure to use the bot with a `Config.json` file, here is an example of how it
         0,
         0,
         0
+    ],
+    "Rules": [
+       "This is rule 1",
+       "This is rule 2",
+       "This is rule 3"
     ]
 }
 ```
 You can also see the [sample config file](Sample.Config.json).
 
 **WARNING** Please don't publish the `Config.json` file anywhere as it contains sensitive information that can compromise your bot. This file is already in the .gitignore, but make sure it is also in yours. We're not responsible for any damage done to you or your bot.
+
+## Code structure
+When contributing code, make sure that your code matches the prefered way of writing it.
+
+Example file/script:
+```cs
+using System.Threading.Tasks;
+                                        // Seperate base namespaces with one line
+using DSharpPlus.Entities;
+using DSharpPlus.CommandsNext;
+using DSharpPlus.CommandsNext.Attributes;
+                                        // Seperate base namespaces with one line
+using static BotANF.Extensions.MessageExtensions;
+
+namespace BotANF.Commands // Namespaces names based upon what they are for
+{
+    ///<summary> // Always good to add a summary for a class, but not compulsory
+    /// Utility commands belong to this class
+    ///</summary>
+    public class Utility : BaseCommandModule
+    {
+        [Command("latency"), Aliases("ping")]
+        [Cooldown(3, 120, CooldownBucketType.User)]
+        [Description("Gets the latency of the bot instance.")]
+        public async Task GetLatency(CommandContext ctx) // Name the `CommandContext` either context or ctx
+        {
+            await (new DiscordEmbedBuilder()
+            .WithColor(DiscordColor.CornflowerBlue)
+            // Embed colors:-
+            // Success: Green
+            // Info: CornflowerBlue
+            // Error: Red
+            .WithDescription($"The current latency is **{ctx.Client.Ping}**ms")
+            .Build()).Send(ctx.Channel);
+        }
+
+        [Command("hello"), Aliases("hi", "hey")]
+        public async Task Hello(CommandContext context)
+            => await context.Send($"Hello {context.User.Username}"); // Preferable way of sending a simple message.
+    }                                       // ^ Preferable way of filling arguments in a string
+}
+```
 
 ## Issues
 In the issues section, you can create issues of features you want added, bugs that need to be fixed or something that is wrong.

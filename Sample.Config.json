@@ -4,5 +4,10 @@
         "int - Rewrite",
         "int - Minor",
         "int - Patch"
-    ]
+    ],
+    "Rules": [
+        "This is rule 1",
+        "This is rule 2",
+        "This is rule 3"
+     ]
 }

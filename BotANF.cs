@@ -13,7 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace BotANF
 {
-    public class BotANF
+    ///<summary>
+    /// Main file for booting and running the bot
+    ///</summary>
+    public class Bot
     {
         public static BotConfig config = new BotConfig();
         public static DiscordClient client;
@@ -50,6 +53,7 @@ namespace BotANF
             services = new ServiceCollection()
                 .AddSingleton<DiscordClient>(client)
                 .AddSingleton<CommandsNextExtension>(commands)
+                .AddSingleton<BotConfig>(config)
                 .BuildServiceProvider();
 
             commands.RegisterCommands<Commands.Utility>();
@@ -61,13 +65,12 @@ namespace BotANF
 
         private async Task InitializeBot(DiscordClient sender, ReadyEventArgs e)
         {
-            DiscordActivity activity = new DiscordActivity
+            await client.UpdateStatusAsync(new DiscordActivity
             {
                 Name = "Illuminati take over the World!",
                 ActivityType = ActivityType.Watching,
-            };
-            await client.UpdateStatusAsync(activity);
-            Console.WriteLine($"{sender.CurrentUser.Username} logged into Discord!");
+            });
+            Console.WriteLine($"{sender.CurrentUser.Username} logged onto Discord!");
         }
     }
 }

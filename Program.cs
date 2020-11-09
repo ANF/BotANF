@@ -15,8 +15,7 @@ namespace BotANF
         static void Main()
         {
             Initialize();
-            new BotANF().RunAsync().GetAwaiter().GetResult();
-            Console.ReadKey();
+            new Bot().RunAsync().GetAwaiter().GetResult();
         }
 
         ///<summary>
@@ -28,7 +27,13 @@ namespace BotANF
         ///</remarks>
         private static void Initialize()
         {
-            BotANF.jsonOptions = new JsonSerializerOptions
+            if (!File.Exists("Config.json"))
+            {
+                Console.WriteLine("Config.json is not found!");
+                throw new FileNotFoundException();
+            }
+
+            Bot.jsonOptions = new JsonSerializerOptions
             {
                 AllowTrailingCommas = true,
                 ReadCommentHandling = JsonCommentHandling.Skip,
@@ -36,15 +41,9 @@ namespace BotANF
                 PropertyNameCaseInsensitive = true,
             };
             string json = File.ReadAllText("Config.json");
-            BotANF.config = JsonSerializer.Deserialize<BotConfig>(json, BotANF.jsonOptions);
+            Bot.config = JsonSerializer.Deserialize<BotConfig>(json, Bot.jsonOptions);
             Assembly assembly = Assembly.GetExecutingAssembly();
             Console.Title = $"{assembly.GetName().Name} {Ver.ShortVersion}";
-
-            if (!File.Exists("Config.json"))
-            {
-                Console.WriteLine("Config.json is not found!");
-                throw new FileNotFoundException();
-            }
         }
     }
 }
