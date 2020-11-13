@@ -24,6 +24,7 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 
 - [ ] Test A
 - [ ] Test B
+**Note**: Change these tests, add more and give them a title and description.
 
 ## Checklist:
 
