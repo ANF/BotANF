@@ -23,6 +23,10 @@ Make sure to use the bot with a `Config.json` file, here is an example of how it
         0,
         0
     ],
+    "Prefixes": [
+        "Prefix 1",
+        "Prefix 2"
+    ],
     "Rules": [
        "This is rule 1",
        "This is rule 2",
@@ -47,17 +51,17 @@ using DSharpPlus.CommandsNext.Attributes;
                                         // Seperate base namespaces with one line
 using static BotANF.Extensions.MessageExtensions;
 
-namespace BotANF.Commands // Namespaces names based upon what they are for
+namespace BotANF.Commands // Namespaces names based upon what they are for.
 {
-    ///<summary> // Always good to add a summary for a class, but not compulsory
-    /// Utility commands belong to this class
+    ///<summary> // Always good to add a summary for a class, but not compulsory.
+    /// Utility commands belong to this class.
     ///</summary>
     public class Utility : BaseCommandModule
     {
         [Command("latency"), Aliases("ping")]
         [Cooldown(3, 120, CooldownBucketType.User)]
         [Description("Gets the latency of the bot instance.")]
-        public async Task GetLatency(CommandContext ctx) // Name the `CommandContext` either context or ctx
+        public async Task GetLatency(CommandContext ctx) // Name the `CommandContext` either context or ctx.
         {
             await (new DiscordEmbedBuilder()
             .WithColor(DiscordColor.CornflowerBlue)
@@ -72,12 +76,14 @@ namespace BotANF.Commands // Namespaces names based upon what they are for
         [Command("hello"), Aliases("hi", "hey")]
         public async Task Hello(CommandContext context)
             => await context.Send($"Hello {context.User.Username}"); // Preferable way of sending a simple message.
-    }                                       // ^ Preferable way of filling arguments in a string
+    }                                       // ^ Preferable way of filling arguments in a string.
 }
 ```
 
+And aside from that, just make sure to follow Microsoft C#'s [coding conventions](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions), [naming guidelines](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines) and the [basic code structure](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/general-structure-of-a-csharp-program)
+
 ## Issues
-In the issues section, you can create issues of features you want added, bugs that need to be fixed or something that is wrong.
+In the [issues section](https://github.com/ANF-Studios/BotANF/issues), you can create issues of features you want added, bugs that need to be fixed or something that is wrong.
 
 ## Building / running
 Building or running the bot should be very simple and straightforward. Depending on the IDE you use, you can simply build or run the project using the IDE's integrated tools.
