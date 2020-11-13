@@ -33,7 +33,7 @@ namespace BotANF
                 throw new FileNotFoundException();
             }
 
-            Bot.jsonOptions = new JsonSerializerOptions
+            Bot.JsonOptions = new JsonSerializerOptions
             {
                 AllowTrailingCommas = true,
                 ReadCommentHandling = JsonCommentHandling.Skip,
@@ -41,7 +41,7 @@ namespace BotANF
                 PropertyNameCaseInsensitive = true,
             };
             string json = File.ReadAllText("Config.json");
-            Bot.config = JsonSerializer.Deserialize<BotConfig>(json, Bot.jsonOptions);
+            Bot.Config = JsonSerializer.Deserialize<BotConfig>(json, Bot.JsonOptions);
             Assembly assembly = Assembly.GetExecutingAssembly();
             Console.Title = $"{assembly.GetName().Name} {Ver.ShortVersion}";
         }

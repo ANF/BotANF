@@ -6,8 +6,6 @@
 <h3 align="center">The official ANF Studios Discord bot!</h3>
 
 <p align="center">
-    <a href="#building--running">Building & running</a> •
-    <a href="#versioning">Versioning</a> •
     <a href="https://github.com/ANF-Studios/BotANF/blob/master/LICENSE">License</a> •
     <a href="https://github.com/ANF-Studios/BotANF/blob/master/CODE_OF_CONDUCT.md">Code of Conduct</a> •
     <a href="https://github.com/ANF-Studios/BotANF/blob/master/CONTRIBUTING.MD">Contributing</a> •

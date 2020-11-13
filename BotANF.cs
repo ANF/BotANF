@@ -14,22 +14,22 @@ using Microsoft.Extensions.DependencyInjection;
 namespace BotANF
 {
     ///<summary>
-    /// Main file for booting and running the bot
+    /// Main file for booting and running the bot.
     ///</summary>
     public class Bot
     {
-        public static BotConfig config = new BotConfig();
-        public static DiscordClient client;
-        public static JsonSerializerOptions jsonOptions;
+        public static BotConfig Config = new BotConfig();
+        public static DiscordClient Client;
+        public static JsonSerializerOptions JsonOptions;
 
         private static ServiceProvider services;
         private static CommandsNextExtension commands;
 
         public async Task RunAsync()
         {
-            client = new DiscordClient(new DiscordConfiguration
+            Client = new DiscordClient(new DiscordConfiguration
             {
-                Token = config.Token,
+                Token = Config.Token,
                 TokenType = TokenType.Bot,
                 MessageCacheSize = 50,
                 AutoReconnect = true,
@@ -39,7 +39,7 @@ namespace BotANF
                 LogTimestampFormat = $"{DateTime.UtcNow}",
             });
 
-            commands = client.UseCommandsNext(new CommandsNextConfiguration
+            commands = Client.UseCommandsNext(new CommandsNextConfiguration
             {
                 CaseSensitive = false,
                 DmHelp = false,
@@ -47,25 +47,25 @@ namespace BotANF
                 EnableMentionPrefix = true,
                 IgnoreExtraArguments = true,
                 UseDefaultCommandHandler = true,
-                StringPrefixes = new string[2] { ",", "." },
+                StringPrefixes = Config.Prefixes,
             });
 
             services = new ServiceCollection()
-                .AddSingleton<DiscordClient>(client)
+                .AddSingleton<DiscordClient>(Client)
                 .AddSingleton<CommandsNextExtension>(commands)
-                .AddSingleton<BotConfig>(config)
+                .AddSingleton<BotConfig>(Config)
                 .BuildServiceProvider();
 
             commands.RegisterCommands<Commands.Utility>();
-            client.Ready += InitializeBot;
+            Client.Ready += InitializeBot;
 
-            await client.ConnectAsync();
+            await Client.ConnectAsync();
             await Task.Delay(Timeout.Infinite);
         }
 
         private async Task InitializeBot(DiscordClient sender, ReadyEventArgs e)
         {
-            await client.UpdateStatusAsync(new DiscordActivity
+            await Client.UpdateStatusAsync(new DiscordActivity
             {
                 Name = "Illuminati take over the World!",
                 ActivityType = ActivityType.Watching,
