@@ -27,7 +27,6 @@ namespace BotANF.Commands
 
         //F command
         [Command("F")]
-        [RequiresRole("Member")]
         [Description("Replies with ||[REDACTED]||")]
         public async Task SayF()
             => await ReplyAsync("F");
