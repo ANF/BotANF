@@ -32,7 +32,7 @@ namespace BotANF.Commands
             => await ReplyAsync("F");
 
         //Echo command
-        [Command("Say"), Aliases("say")]
+        [Command("Say")]
         [RequiresRole("Member")]
         [Description("Say what user gave as input")]
         public async Task RepeatUser([Remainder] [Summary("What should the bot say")] string echo)
