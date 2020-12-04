@@ -8,6 +8,9 @@ using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.CommandsNext;
 
+using MongoDB.Driver;
+using MongoDB.Driver.Core;
+
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,14 +22,23 @@ namespace BotANF
     public class Bot
     {
         public static BotConfig Config = new BotConfig();
-        public static DiscordClient Client;
         public static JsonSerializerOptions JsonOptions;
+        public static DiscordClient Client;
+        public static MongoClient DBClient;
 
         private static ServiceProvider services;
         private static CommandsNextExtension commands;
 
         public async Task RunAsync()
         {
+            DBClient = new MongoClient(Config.DBKey);
+            BotConfig.Database = DBClient.GetDatabase(BotConfig.DatabaseName);
+            BotConfig.CollectionBase = BotConfig.Database.GetCollection<BotConfig>(BotConfig.ConfigCollection);
+
+            //var firstDocument = BotConfig.CollectionBase.Find(new MongoDB.Bson.BsonDocument()).FirstOrDefault();
+            //Console.WriteLine(firstDocument.ToString());
+
+
             Client = new DiscordClient(new DiscordConfiguration
             {
                 Token = Config.Token,
@@ -49,11 +61,12 @@ namespace BotANF
                 UseDefaultCommandHandler = true,
                 StringPrefixes = Config.Prefixes,
             });
-
+            
             services = new ServiceCollection()
                 .AddSingleton<DiscordClient>(Client)
                 .AddSingleton<CommandsNextExtension>(commands)
                 .AddSingleton<BotConfig>(Config)
+                .AddSingleton<MongoClient>(DBClient)
                 .BuildServiceProvider();
 
             commands.RegisterCommands<Commands.Utility>();
