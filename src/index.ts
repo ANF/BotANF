@@ -1,13 +1,13 @@
 import { registerCommands, registerEvents } from './utils/registry';
-import config from '../slappey.json';
 import DiscordClient from './client/client';
+import 'dotenv/config'
 const client = new DiscordClient({});
 
 async function main() {
-  client.prefix = config.prefix || client.prefix;
+  client.prefix = process.env.PREFIX || client.prefix;
   await registerCommands(client, '../commands');
   await registerEvents(client, '../events');
-  await client.login(config.token);
+  await client.login(process.env.TOKEN);
 }
 
 main();
