@@ -9,7 +9,7 @@
     "start": "tsc && node ./dist/src/index.js",
     "transcompile": "tsc --outDir ./dist",
     "restore": "npm install",
-    "test": "node ./dist/src/index.js && exit 0"
+    "test": "node ./dist/src/index.ts && exit 0"
   },
   "repository": {
     "type": "git",
