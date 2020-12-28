@@ -4,7 +4,8 @@ When contributing to this repository, please first discuss the change you wish t
 Note that we also have a [code of conduct](CODE_OF_CONDUCT.md)
 
 ### Pull Request Process
-
+0. When making commits, make sure to summarize them with a consice description of what has been changed. Don't do 
+   something like `Minor changes` or `Changed some stuff`, rather something like `Fixed issue #0` or `Improved exception handling`. If you made two changes, undo those and make commits per change.
 1. Ensure any install or build dependencies are removed before the end of the layer when doing a 
    build.
 2. Update the [CHANGELOG.md](CHANGELOG.MD) (and other relevent files) with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
