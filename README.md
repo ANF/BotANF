@@ -1,5 +1,5 @@
 <h1 align="center" style="position: relative;">
-    <img width="200" style="border-radius: 50%;" src="./src/images/Icon.ico" /><br>
+    <img width="200" style="border-radius: 50%;" src="./src/images/favicon.ico" /><br>
     BotANF
 </h1>
 
