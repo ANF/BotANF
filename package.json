@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "tsc && node ./dist/src/index.js",
-    "transcompile": "tsc --outDir ./dist",
+    "transcompile": "tsc --outDir ./dist/",
     "restore": "npm install",
     "test": "node ./dist/src/index.ts && exit 0"
   },
