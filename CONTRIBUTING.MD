@@ -1,9 +1,9 @@
-# Contributing to BotANF
+<h2 align="center">Contributing to BotANF</h2>
 When contributing to this repository, please first discuss the change you wish to make via issue, or on my [Discord server](https://discord.gg/fKWpK7A) or any other method with the owner(s) of this repository before making a change.
 
 Note that we also have a [code of conduct](CODE_OF_CONDUCT.md)
 
-## Pull Request Process
+### Pull Request Process
 
 1. Ensure any install or build dependencies are removed before the end of the layer when doing a 
    build.
@@ -13,7 +13,7 @@ Note that we also have a [code of conduct](CODE_OF_CONDUCT.md)
 4. You may merge the Pull Request in once you have the sign-off of two other developers, or if you 
    do not have permission to do that, you may request the second reviewer to merge it for you.
 
-## Configuration file
+### Configuration file
 Make sure to use the bot with a `Config.json` file, here is an example of how it should look:
 ```json
 {
@@ -82,10 +82,10 @@ namespace BotANF.Commands // Namespaces names based upon what they are for.
 
 And aside from that, just make sure to follow Microsoft C#'s [coding conventions](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions), [naming guidelines](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines) and the [basic code structure](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/general-structure-of-a-csharp-program)
 
-## Issues
+### Issues
 In the [issues section](https://github.com/ANF-Studios/BotANF/issues), you can create issues of features you want added, bugs that need to be fixed or something that is wrong.
 
-## Building / running
+### Building / running
 Building or running the bot should be very simple and straightforward. Depending on the IDE you use, you can simply build or run the project using the IDE's integrated tools.
 
 If you aren't using an IDE or using the CLI the command for building the project is:
@@ -97,13 +97,13 @@ And for running:
 dotnet run
 ```
 
-## Discord Server
+### Discord Server
 [![ANF Studios](https://discord.com/api/guilds/732064655396044840/embed.png?style=banner3)](https://discord.gg/fKWpK7A)
 
-## Comprehensive guide on contributing
+### Comprehensive guide on contributing
 Before you even begin working on fixes or features you have to fork the repository as you cannot directly work on this one.
 
-#### Adding new features / bug fixing
+##### Adding new features / bug fixing
 You should branch off from the dev branch:
 
 Then you should do all the new work in that branch (myFeature). Then merge that branch back into the dev branch.
