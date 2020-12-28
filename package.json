@@ -8,7 +8,8 @@
   "scripts": {
     "start": "tsc && node ./dist/src/index.js",
     "transcompile": "tsc",
-    "restore": "npm install"
+    "restore": "npm install",
+    "test": "node ./dist/src/index.js && exit 0"
   },
   "repository": {
     "type": "git",
