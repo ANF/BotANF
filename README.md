@@ -1,5 +1,5 @@
 <h1 align="center" style="position: relative;">
-    <img width="200" style="border-radius: 50%;" src="./images/Icon.ico"/><br>
+    <img width="200" style="border-radius: 50%;" src="./images/Icon.ico" /><br>
     BotANF
 </h1>
 
@@ -12,18 +12,25 @@
     <a href="https://github.com/ANF-Studios/BotANF/blob/master/CHANGELOG.MD">Changelog</a>
 </p>
 
-## Building & Running
-Run `dotnet restore` to restore the packages and `dotnet run` to run it.
-Make sure you have the required `Config.json` file which should look like the [sample config file](Sample.Config.json).
+<h2>Building and Running</h2>
+<p>Run `npm install` or `npm restore` to install the packages. Make sure you have the required <code>.env</code> file which should look like this [sample env file](.sample.env).</p>
 
-## Versioning
-|Number|Description|
-|--:|:--|
-|Major|Rewrite of the bot, only changed by the server owner(s)|
-|Minor|Small changes added or updated|
-|Patch|When something gets fixed|
+<h2>Versioning</h2>
+<p>BotANF uses [SemVer](https://semver.org/).
+    <q>
+        Given a version number MAJOR.MINOR.PATCH, increment the:
+        <code>MAJOR</code> version when you make incompatible API changes,
+        <code>MINOR</code> version when you add functionality in a backwards compatible manner, and
+        <code>PATCH</code> version when you make backwards compatible bug fixes.
+        Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH
+        format.
+    </q>
+</p>
 
-## Discord Server
-Of course, there is no bot without its discord server. Feel free to join it
+<h2>Further help</h2>
+<p>You can <a href="https://github.com/ANF-Studios/BotANF/issues/new">create an issue</a> or just join the support
+    server.</p>
 
-[![ANF Studios](https://discord.com/api/guilds/732064655396044840/embed.png?style=banner3)](https://discord.gg/fKWpK7A)
+<a href="https://discord.gg/fKWpK7A"><img
+        src="https://discord.com/api/guilds/732064655396044840/embed.png?style=banner3"
+        alt="Discuss in the server"></img></a>
