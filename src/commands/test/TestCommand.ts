@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import BaseCommand from '../../utils/structures/BaseCommand';
-import DiscordClient from '../../client/client';
+import DiscordClient from '../../utils/client/client';
 
 export default class TestCommand extends BaseCommand {
   constructor() {

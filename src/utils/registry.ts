@@ -1,7 +1,7 @@
 
 import path from 'path';
 import { promises as fs } from 'fs';
-import DiscordClient from '../client/client';
+import DiscordClient from './client/client';
 
 export async function registerCommands(client: DiscordClient, dir: string = '') {
   const filePath = path.join(__dirname, dir);
