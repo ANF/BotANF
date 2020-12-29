@@ -1,4 +1,3 @@
-
 import DiscordClient from '../client/client';
 
 export default abstract class BaseEvent {
