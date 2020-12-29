@@ -1,5 +1,5 @@
-import BaseEvent from '../../utils/structures/BaseEvent';
-import DiscordClient from '../../client/client';
+import BaseEvent from '../utils/structures/BaseEvent';
+import DiscordClient from '../client/client';
 
 export default class ReadyEvent extends BaseEvent {
   constructor() {
