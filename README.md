@@ -13,18 +13,18 @@
 </p>
 
 <h2>Building and Running</h2>
-<p>Run `npm install` or `npm restore` to install the packages. Make sure you have the required <code>.env</code> file which should look like this [sample env file](.sample.env).</p>
+<p>Run <code>npm install</code> or <code>npm restore</code> to install the packages. Make sure you have the required <code>.env</code> file which should look like this [sample env file](.sample.env).</p>
 
 <h2>Versioning</h2>
-<p>BotANF uses [SemVer](https://semver.org/).
-    <q>
-        Given a version number MAJOR.MINOR.PATCH, increment the:
-        <code>MAJOR</code> version when you make incompatible API changes,
-        <code>MINOR</code> version when you add functionality in a backwards compatible manner, and
-        <code>PATCH</code> version when you make backwards compatible bug fixes.
+<p>BotANF uses <a href="https://semver.org/">SemVer</a>.
+    <blockquote>
+        Given a version number MAJOR.MINOR.PATCH, increment the<br/>
+        <code>MAJOR</code> version when you make incompatible API changes,<br/>
+        <code>MINOR</code> version when you add functionality in a backwards compatible manner, and<br/>
+        <code>PATCH</code> version when you make backwards compatible bug fixes.<br/>
         Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH
         format.
-    </q>
+    </blockquote>
 </p>
 
 <h2>Further help</h2>
