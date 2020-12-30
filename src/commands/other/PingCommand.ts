@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
-import BaseCommand from '../../utils/structures/BaseCommand';
-import DiscordClient from '../../client/client';
+import BaseCommand from '../../utils/BaseCommand';
+import DiscordClient from '../../utils/client/client';
 
 export default class PingCommand extends BaseCommand {
   constructor() {
@@ -8,6 +8,6 @@ export default class PingCommand extends BaseCommand {
   }
 
   async run(client: DiscordClient, message: Message, args: Array<string>) {
-    message.channel.send(`The current latency is \`${client.ws.ping}\``);
+    message.channel.send(`The current latency is \`${client.ws.ping}\`ms`);
   }
 }

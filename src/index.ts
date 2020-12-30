@@ -1,5 +1,5 @@
 import { registerCommands, registerEvents } from './utils/registry';
-import DiscordClient from './client/client';
+import DiscordClient from './utils/client/client';
 import 'dotenv/config'
 const client = new DiscordClient({});
 
