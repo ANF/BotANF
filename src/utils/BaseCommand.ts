@@ -1,6 +1,5 @@
-
 import { Message } from 'discord.js';
-import DiscordClient from '../../client/client';
+import DiscordClient from './client/client';
 
 export default abstract class BaseCommand {
   constructor(private name: string, private category: string, private aliases: Array<string>) {}
