@@ -4,7 +4,7 @@ import DiscordClient from '../../utils/client/client';
 
 export default class PingCommand extends BaseCommand {
   constructor() {
-    super('ping', 'latency', []);
+    super('ping', 'Utility', ['latency', 'pong']);
   }
 
   async run(client: DiscordClient, message: Message, args: Array<string>) {
