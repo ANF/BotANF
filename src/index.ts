@@ -1,10 +1,11 @@
 import { registerCommands, registerEvents } from './utils/registry';
 import DiscordClient from './utils/client/client';
 import clientConfig from './utils/config/clientConfig';
+//import {  } from "./commands";
 import 'dotenv/config';
 export const client = new DiscordClient({
   disableMentions: 'everyone',
-  ws: { compress: true }
+  ws: { compress: false }
 });
 
 async function main(configuration: clientConfig) {
