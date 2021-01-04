@@ -1,6 +1,6 @@
 import { registerCommands, registerEvents } from './utils/registry';
 import DiscordClient from './utils/client/client';
-import 'dotenv/config';
+import 'dotenv/config'
 const client = new DiscordClient({});
 
 async function main() {
@@ -10,6 +10,4 @@ async function main() {
   await client.login(process.env.TOKEN);
 }
 
-main().catch(reason => {
-  console.log('[ERROR] Something went wrong!\n' + reason);
-});
+main();
