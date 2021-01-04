@@ -17,13 +17,7 @@ export default class MessageEvent extends BaseEvent {
       const command = client.commands.get(cmdName);
       if (command) {
         command.run(client, message, cmdArgs);
-      } else { await this.unknownCMD(message, cmdName); }
-    } 
-    // TODO: Create it. ⬇
-    /*else { // This part checks for anything unwanted or something to be reacted upon depending on requirements.
-    }*/
-  }
-  private async unknownCMD(message: Message, commandName: string) {
-    await message.channel.send('`' + commandName + '` is not a valid command.')
+      }
+    }
   }
 }

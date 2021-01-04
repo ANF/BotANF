@@ -8,7 +8,7 @@
   "scripts": {
     "start": "tsc && node ./dist/index.js",
     "transcompile": "tsc --outDir ./dist/",
-    "restore": "npm install && npm fund",
+    "restore": "npm install",
     "test": "node ./dist/index.js && exit 0"
   },
   "repository": {
@@ -26,12 +26,9 @@
   "license": "GPL-3.0",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "mongodb": "^3.6.3"
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
-    "@types/dotenv": "^8.2.0",
-    "@types/mongodb": "^3.6.3",
     "@types/node": "^14.14.16",
     "typescript": "^4.1.3"
   },

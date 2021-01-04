@@ -3,9 +3,10 @@ import BaseEvent from '../BaseEvent';
 import BaseCommand from '../BaseCommand';
 
 export default class DiscordClient extends Client {
+
   private _commands = new Collection<string, BaseCommand>();
   private _events = new Collection<string, BaseEvent>();
-  private _prefix: string = ','; // The original BotANF™ prefix.
+  private _prefix: string = '!';
 
   constructor(options?: ClientOptions) {
     super(options);
@@ -16,4 +17,5 @@ export default class DiscordClient extends Client {
   get prefix(): string { return this._prefix; }
 
   set prefix(prefix: string) { this._prefix = prefix; }
+
 }

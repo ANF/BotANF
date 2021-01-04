@@ -10,7 +10,7 @@
  
     /* Strict Type-Checking Options */
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
@@ -19,8 +19,7 @@
     "alwaysStrict": true,
 
     /* Additional Checks */
-    "allowUnusedLabels": false,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "noUnusedParameters": false,
     "noImplicitReturns": true,
 
