@@ -11,6 +11,5 @@ export default class RulesCommand extends BaseCommand {
     async run(client: DiscordClient, message: Message, args: Array<string>) {
         if (mongoSettings.Rules[Number(args[0]) - 1]) message.channel.send(`Rule ${args[0]}\n${mongoSettings.Rules[Number(args[0]) - 1]}`);
         else message.channel.send('err, invalid argument');
-        
     }
 }
