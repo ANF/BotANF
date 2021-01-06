@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import DiscordClient from "./client/client";
 type Nullable<T> = T | null;
+/**Category or types of commands in BotANF.*/
 type Category = "Utility" | "Moderation" | "User" | "Custom Commands" | null;
 
 /**
