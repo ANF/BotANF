@@ -43,7 +43,7 @@ main({
   user_status: "idle",
   user_presence: "as Illuminati",
   user_presenceType: "PLAYING",
-}).catch(async (err) => {
+}).catch((err) => {
   logger.log(
     "There is an error in the main method; " + err,
     logLevel.warning,
