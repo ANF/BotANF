@@ -5,7 +5,7 @@ import DiscordClient from "../../utils/client/client";
 
 export default class SayCommand extends BaseCommand {
   constructor() {
-    super("say", "Utility", "Says whatever the user says.", [client.prefix]);
+    super("say", "Utility", "Says whatever the user says", [client.prefix]);
   }
 
   // TODO: Fix a bug where new line doesn't work in sent messages.
