@@ -9,12 +9,22 @@ type Category = "Utility" | "Moderation" | "User" | "Custom Commands" | null;
  * constructs it all.
  */
 export default abstract class BaseCommand {
+  static commandNames: Array<string> = new Array();
+  static commandDescriptions: Array<string> = new Array();
+
   constructor(
     private name: string,
     private category: Category,
     private description: Nullable<string>,
-    private aliases: Array<string>
-  ) {}
+    private aliases: Array<string>,
+    private hidden: boolean = false
+  ) {
+    BaseCommand.commandNames.push(name);
+    BaseCommand.commandDescriptions.push(
+      `${(description ??= "Description not provided")}`
+    );
+    BaseCommand.commandNames.sort();
+  }
 
   getName(): string {
     return this.name;
