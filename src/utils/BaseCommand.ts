@@ -3,6 +3,11 @@ import DiscordClient from "./client/client";
 type Nullable<T> = T | null;
 type Category = "Utility" | "Moderation" | "User" | "Custom Commands" | null;
 
+/**
+ * The command system for the Discord Client.
+ * This is the basic structure and which
+ * constructs it all.
+ */
 export default abstract class BaseCommand {
   constructor(
     private name: string,
@@ -22,6 +27,12 @@ export default abstract class BaseCommand {
   }
   getAliases(): Array<string> {
     return this.aliases;
+  }
+  getCommandNames(): Array<string> {
+    return BaseCommand.commandNames;
+  }
+  getCommandDescription(): Array<string> {
+    return BaseCommand.commandDescriptions;
   }
 
   abstract run(
