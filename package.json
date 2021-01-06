@@ -8,6 +8,7 @@
   "scripts": {
     "start": "tsc && node ./dist/index.js",
     "transcompile": "tsc --outDir ./dist/",
+    "format": "prettier --write \"**/*.{ts,json,md}\"",
     "restore": "npm install && npm fund",
     "test": "node ./dist/index.js && exit 0"
   },
