@@ -7,7 +7,7 @@ import logger from "../../utils/helper/logger";
 export default class TestCommand extends BaseCommand {
   text: any = null;
   constructor() {
-    super("test", "testing", []);
+    super("test", null, "A test command for BotANF.", ["testing"]);
   }
 
   async run(client: DiscordClient, message: Message, args: Array<string>) {
