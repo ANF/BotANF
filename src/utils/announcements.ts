@@ -14,7 +14,7 @@ export class Announcements {
     public static error(discordMessageInstance: Discord.Message, title: string, description?: string, deleteAfter?: boolean) {
         
         // declaring the embed.
-        const embed = new Discord.RichEmbed().setColor(Colors.BAD_RED).setTitle(`${title}`);
+        const embed = new Discord.MessageEmbed().setColor(Colors.BAD_RED).setTitle(`${title}`);
         
         // setting the description, only if it is provided.
         if (description) {
@@ -37,7 +37,7 @@ export class Announcements {
     public static success(discordMessageInstance: Discord.Message, title: string, description?: string, deleteAfter?: boolean) {
         
         // declaring the embed
-        const embed = new Discord.RichEmbed().setColor(Colors.GOOD_GREEN).setTitle(`${title}`);
+        const embed = new Discord.MessageEmbed().setColor(Colors.GOOD_GREEN).setTitle(`${title}`);
         
         // setting description if it is provided.
         if (description) {
