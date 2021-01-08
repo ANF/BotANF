@@ -1,4 +1,5 @@
 <h2 align="center">Contributing to BotANF</h2>
+
 When contributing to this repository, please first discuss the change you wish to make via issue, or on my [Discord server](https://discord.gg/fKWpK7A) or any other method with the owner(s) of this repository before making a change.
 
 Note that we also have a [code of conduct](CODE_OF_CONDUCT.md)
