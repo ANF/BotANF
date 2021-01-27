@@ -8,8 +8,9 @@ export default class SayCommand extends BaseCommand {
     super("say", "Utility", "Says whatever the user says", [client.prefix]);
   }
 
-  // TODO: Fix a bug where new line doesn't work in sent messages.
   async run(client: DiscordClient, message: Message, args: Array<string>) {
-    message.channel.send(args.join(" "));
+    message.channel.send(message.content.startsWith(client.prefix + "say")
+      ? message.content.slice(client.prefix.length + 3)
+      : message.content.slice(client.prefix.length * 2));
   }
 }
