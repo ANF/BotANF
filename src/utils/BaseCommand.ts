@@ -39,6 +39,9 @@ export default abstract class BaseCommand {
   getAliases(): Array<string> {
     return this.aliases;
   }
+  isHidden(): boolean {
+    return this.hidden;
+  }
   getCommandNames(): Array<string> {
     return BaseCommand.commandNames;
   }
