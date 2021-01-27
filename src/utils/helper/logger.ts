@@ -5,11 +5,13 @@ export class Logger implements loggerOptions {
   minimumLoggingLevel: logLevel;
   closeAppOnError: boolean;
   colors = {
+    color_debug: "", // This is because the debug mode shouldn't really be used in the final build.
     color_verbose: "\u001b[34m",
     color_info: "\u001b[32m",
     color_warning: "\u001b[33m",
     color_error: "\u001b[31m",
   };
+  debugEnabled: boolean;
 
   /**
    * @param options The options that tell the logger how to function,
@@ -34,6 +36,7 @@ export class Logger implements loggerOptions {
     this.colors.color_info = options.colors?.color_info ?? "\u001b[32m";
     this.colors.color_warning = options.colors?.color_warning ?? "\u001b[33m";
     this.colors.color_error = options.colors?.color_error ?? "\u001b[31m";
+    this.debugEnabled = options.debugEnabled ?? false;
   }
 
   /**
@@ -45,6 +48,12 @@ export class Logger implements loggerOptions {
   public log(textToLog: string, logType: logLevel, file: string) {
     let color: Nullable<string> = null;
     switch (logType) {
+      case logLevel.debug:
+        if (this.minimumLoggingLevel == logLevel.debug)
+          color = this.colors.color_debug;
+        else return;
+        break;
+
       case logLevel.verbose:
         if (this.minimumLoggingLevel == logLevel.verbose)
           color = this.colors.color_verbose;
@@ -90,9 +99,11 @@ export class Logger implements loggerOptions {
 
 /**
  * The level of the log for `Logger.log`. There are
- * four levels; `verbose`, `info`, `warning`, `error`.
+ * five levels; `debug`, `verbose`, `info`, `warning`
+ * and `error`.
  */
 export enum logLevel {
+  debug,
   verbose,
   info,
   warning,
@@ -121,6 +132,7 @@ interface loggerOptions {
     color_warning: string;
     color_error: string;
   };
+  debugEnabled?: boolean,
 }
 
 /**
@@ -129,5 +141,6 @@ interface loggerOptions {
 const logger = new Logger({
   minimumLoggingLevel: logLevel.verbose,
   closeAppOnError: true,
+  debugEnabled: false,
 });
 export default logger;
