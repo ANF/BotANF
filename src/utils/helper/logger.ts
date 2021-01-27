@@ -81,7 +81,7 @@ export class Logger implements loggerOptions {
     console.log(
       `${color}[${logLevel[
         logType
-      ].toUpperCase()} ${file}]${color_reset} ${textToLog}`
+      ].toUpperCase()}, ${file}]${color_reset} ${textToLog}`
     );
     if (this.closeAppOnError == true && logType == logLevel.error)
       process.exit(1);
