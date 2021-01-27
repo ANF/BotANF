@@ -49,7 +49,7 @@ export class Logger implements loggerOptions {
     let color: Nullable<string> = null;
     switch (logType) {
       case logLevel.debug:
-        if (this.minimumLoggingLevel == logLevel.debug)
+        if (this.debugEnabled == true)
           color = this.colors.color_debug;
         else return;
         break;
