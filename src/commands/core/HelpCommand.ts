@@ -24,3 +24,12 @@ export default class HelpCommand extends BaseCommand {
     message.channel.send(helpEmbed);
   }
 }
+
+/*
+      if (BaseCommand.commandInfo[index][2] == false  // If the command isn't hidden,
+          && embedFields < 5) { // and the fields number in the current embed is less than 5.
+        helpEmbed.addField(value[0], // The name of the command.
+          value[1], // The description of the command.
+          false); // This is the inline value; for the discord embed.
+        ++embedFields; // Increment this value.
+*/
