@@ -3,6 +3,12 @@ import DiscordClient from "./client/client";
 type Nullable<T> = T | null;
 /**Category or types of commands in BotANF.*/
 type Category = "Utility" | "Moderation" | "User" | "Custom Commands" | null;
+export /*const*/ enum Categories {
+  Utility = "Utility",
+  Moderation = "Moderation",
+  User = "User",
+  CustomCommands = "Custom Commands"
+};
 
 /**
  * The command system for the Discord Client.
@@ -10,8 +16,7 @@ type Category = "Utility" | "Moderation" | "User" | "Custom Commands" | null;
  * constructs it all.
  */
 export default abstract class BaseCommand {
-  static commandNames: Array<string> = new Array();
-  static commandDescriptions: Array<string> = new Array();
+  static commandInfo: Array<[string, Nullable<string>, boolean]> = new Array();
 
   constructor(
     private name: string,
@@ -20,11 +25,8 @@ export default abstract class BaseCommand {
     private aliases: Array<string>,
     private hidden: boolean = false
   ) {
-    BaseCommand.commandNames.push(name);
-    BaseCommand.commandDescriptions.push(
-      `${(description ??= "Description not provided")}`
-    );
-    BaseCommand.commandNames.sort();
+    BaseCommand.commandInfo.push([name, description ??= "Description not provided", hidden]);
+    BaseCommand.commandInfo.sort();
   }
 
   getName(): string {
@@ -42,11 +44,11 @@ export default abstract class BaseCommand {
   isHidden(): boolean {
     return this.hidden;
   }
-  getCommandNames(): Array<string> {
-    return BaseCommand.commandNames;
+  getcommandInfo(index: number): Array<unknown> {
+    return BaseCommand.commandInfo[index];
   }
-  getCommandDescription(): Array<string> {
-    return BaseCommand.commandDescriptions;
+  getCommandsInfo(): Array<[string, Nullable<string>, boolean]> {
+    return BaseCommand.commandInfo;
   }
 
   abstract run(

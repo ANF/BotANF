@@ -141,6 +141,6 @@ interface loggerOptions {
 const logger = new Logger({
   minimumLoggingLevel: logLevel.verbose,
   closeAppOnError: true,
-  debugEnabled: false,
+  debugEnabled: true,
 });
 export default logger;
