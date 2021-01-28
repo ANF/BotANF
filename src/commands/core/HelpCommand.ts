@@ -8,8 +8,8 @@ export default class HelpCommand extends BaseCommand {
     super("help", "User", "Shows a list of commands", ["commands"]);
   }
 
+  // TODO: Write the help command and program the logic.
   async run(client: DiscordClient, message: Message, args: Array<string>) {
-    // TODO: Write the help command and program the logic.
     const helpEmbed: MessageEmbed = new MessageEmbed({
       color: EmbedColor.NULL,
     });
