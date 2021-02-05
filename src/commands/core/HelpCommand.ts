@@ -25,6 +25,19 @@ export default class HelpCommand extends BaseCommand {
             case "utility":
             case "utilities":
                 break;
+
+            case "moderation":
+            case "mod":
+            case "administration":
+                break;
+
+            case "user":
+            case "customization":
+                break;
+
+            case "cc":
+            case "ccl":
+            case "custom Commands":
                 break;
         }
         if (message.member?.roles.cache.has("Administrator") // If the user has the Admin role
