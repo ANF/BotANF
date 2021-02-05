@@ -11,7 +11,6 @@ export default class HelpCommand extends BaseCommand {
 
     // TODO: Write the help command and program the logic.
     async run(client: DiscordClient, message: Message, args: Array<string>) {
-        logger.log(``, logLevel.debug, 'HelpCommand')
         let embedFields = 0;
         const helpEmbed: MessageEmbed = new MessageEmbed({
             color: EmbedColor.NULL,
