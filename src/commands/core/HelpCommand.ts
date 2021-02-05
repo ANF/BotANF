@@ -45,7 +45,7 @@ export default class HelpCommand extends BaseCommand {
                 // somewhere around 5 commands per embed and
                 // I think we should do a reaction embed
                 // as it has been requested a lot of times.
-                if (BaseCommand.commandInfo[index][2] == false  // If the command isn't hidden,
+                if (!BaseCommand.commandInfo[index][2]  // If the command isn't hidden,
                     && embedFields < 5) { // and the fields number in the current embed is less than 5.
                     helpEmbed.addField(value[0], // The name of the command.
                         value[1], // The description of the command.
