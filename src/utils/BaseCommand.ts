@@ -5,12 +5,15 @@ type Nullable<T> = T | null;
 /**Category or types of commands in BotANF.*/
 type Category = "Utility" | "Moderation" | "User" | "Custom Commands" | null;
 
-export /*const*/ enum Categories {
-    Utility = "Utility",
-    Moderation = "Moderation",
-    User = "User",
-    CustomCommands = "Custom Commands"
-};
+/**These are the categories each sorted out by name and description.
+ * Quick note: DO NOT change the index of any element as this will
+ * break the bot itself and how it works.*/
+export const Categories: Array<[string, string]> = [
+    ["Utility", "Utility tools for the bot - mostly information"],
+    ["Moderation", "Moderation tools for the server, use it wisely"],
+    ["User", "User commands to customize themselves"],
+    ["Custom Commands", "Custom user commands to have fun and play with"]
+]
 
 /**
  * The command system for the Discord Client.
