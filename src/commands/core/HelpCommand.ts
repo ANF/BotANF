@@ -20,10 +20,11 @@ export default class HelpCommand extends BaseCommand {
         //     || args.includes("Moderation")
         //     || args.includes("User")
         //     || "Custom Commands") {
-        switch (args[0]) {
-            case "Utils":
-            case "Utility":
-            case "Utilities":
+        switch (args[0].toLowerCase()) {
+            case "utils":
+            case "utility":
+            case "utilities":
+                break;
                 break;
         }
         if (message.member?.roles.cache.has("Administrator") // If the user has the Admin role
