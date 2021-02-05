@@ -9,8 +9,8 @@
  * The configuration settings from MongoDB.
  */
 export default class MongoSettings {
-  static Token: string;
-  static Version: Array<string>;
-  static Prefix: string;
-  static Rules: Array<string>;
+    static Token: string;
+    static Version: Array<string>;
+    static Prefix: string;
+    static Rules: Array<string>;
 }
