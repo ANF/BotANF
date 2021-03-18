@@ -46,8 +46,9 @@ function InstallPackages
                 else { throw "x86 build does not exist!" }
             } elseif ($IsMacOS) {
                 # macOS is officially only x64.
-                Invoke-WebRequest -Uri "https://nodejs.org/dist/v14.16.0/node-v14.16.0.pkg" -Method "GET" -OutFile "NodeJS.pkg"
-                Start-Process .\NodeJS.pkg
+                #Invoke-WebRequest -Uri "https://nodejs.org/dist/v14.16.0/node-v14.16.0.pkg" -Method "GET" -OutFile "NodeJS.pkg"
+                #Start-Process .\NodeJS.pkg
+                brew install node
                 [Environment]::Exit([Environment]::ExitCode)
             } else {
                 [Console]::Write("[ERROR] Platform is not Windows, Linux or macOS.");
