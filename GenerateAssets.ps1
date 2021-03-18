@@ -13,11 +13,11 @@ if ($PSVersionTable.PSVersion.Major -lt 6) {
 $Status = 0; # Number of operations completed.
 $ProjectRoot = [System.IO.Directory]::GetCurrentDirectory();
 
-function InstallPackages
-{
+function InstallPackages {
     try {
         npm install
-    } catch [System.Management.Automation.CommandNotFoundException] {
+    }
+    catch [System.Management.Automation.CommandNotFoundException] {
         [Console]::Write("npm was not found! Press y to install npm: ");
         $keycode = [Console]::Read();
         if ($keycode -eq 121 <# keycode of y #>) {
@@ -35,23 +35,27 @@ function InstallPackages
                     Start-Process .\NodeJS-x86.msi
                     [Environment]::Exit([Environment]::ExitCode)
                 }
-            } elseif ($IsLinux) {
-                    #$distro = Invoke-Expression "lsb_release --short --id" # Get the Linux distribution name.
-                    try { apt-get install nodejs -y } catch { <# Do nothing. #> }
-                    try { pacman -S nodejs npm } catch { <# Do nothing. #> }
-                    try { dnf module install nodejs } catch { <# Do nothing. #> }
-                    [Environment]::Exit([Environment]::ExitCode)
-            } elseif ($IsMacOS) {
+            }
+            elseif ($IsLinux) {
+                #$distro = Invoke-Expression "lsb_release --short --id" # Get the Linux distribution name.
+                try { apt-get install nodejs -y } catch { <# Do nothing. #> }
+                try { pacman -S nodejs npm } catch { <# Do nothing. #> }
+                try { dnf module install nodejs } catch { <# Do nothing. #> }
+                [Environment]::Exit([Environment]::ExitCode)
+            }
+            elseif ($IsMacOS) {
                 # macOS is officially only x64.
                 #Invoke-WebRequest -Uri "https://nodejs.org/dist/v14.16.0/node-v14.16.0.pkg" -Method "GET" -OutFile "NodeJS.pkg"
                 #Start-Process .\NodeJS.pkg
                 brew install node
                 [Environment]::Exit([Environment]::ExitCode)
-            } else {
+            }
+            else {
                 [Console]::Write("[ERROR] Platform is not Windows, Linux or macOS.");
                 [Environment]::Exit(1);
             }
-        } else { [Environment]::Exit([Environment]::ExitCode) }
+        }
+        else { [Environment]::Exit([Environment]::ExitCode) }
     }
 }
 
@@ -75,7 +79,8 @@ $Status = 75
 Write-Progress -Activity "Opening VS Code (if it exists)" -PercentComplete $Status
 try {
     code .
-} catch [System.Management.Automation.CommandNotFoundException] { <# Do nothing. #> }
+}
+catch [System.Management.Automation.CommandNotFoundException] { <# Do nothing. #> }
 $Status = 100
 
 Write-Progress -Activity "Completed all tasks" -PercentComplete $Status
