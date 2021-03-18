@@ -38,10 +38,9 @@ function InstallPackages {
             }
             elseif ($IsLinux) {
                 #$distro = Invoke-Expression "lsb_release --short --id" # Get the Linux distribution name.
-                try { sudo apt-get install nodejs -y } catch { [Console]::WriteLine("If you see this, ignore it.") }
+                try { sudo apt-get install nodejs npm -y } catch { [Console]::WriteLine("If you see this, ignore it.") }
                 try { sudo pacman -S nodejs npm } catch { [Console]::WriteLine("If you see this, ignore it.") }
-                try { sudo dnf module install nodejs } catch { [Console]::WriteLine("If you see this, ignore it.") }
-                sudo node install npm -y -g
+                try { sudo dnf module install nodejs npm } catch { [Console]::WriteLine("If you see this, ignore it.") }
                 sudo npm install npx -y -g
                 [Environment]::Exit([Environment]::ExitCode)
             }
