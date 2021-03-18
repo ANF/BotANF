@@ -41,6 +41,8 @@ function InstallPackages {
                 try { sudo apt-get install nodejs -y } catch { [Console]::WriteLine("If you see this, ignore it.") }
                 try { sudo pacman -S nodejs npm } catch { [Console]::WriteLine("If you see this, ignore it.") }
                 try { sudo dnf module install nodejs } catch { [Console]::WriteLine("If you see this, ignore it.") }
+                sudo node install npm -y -g
+                sudo npm install npx -y -g
                 [Environment]::Exit([Environment]::ExitCode)
             }
             elseif ($IsMacOS) {
