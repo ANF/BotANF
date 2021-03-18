@@ -13,7 +13,7 @@
 </p>
 
 <h2>Building and Running</h2>
-<p>Run <code>npm install</code> or <code>npm restore</code> to install the packages. Make sure you have the required <code>.env</code> file which should look like this [sample env file](.sample.env).</p>
+<p>Run <code>npm install</code> or <code>npm restore</code> to install the packages. Make sure you have the required <code>.env</code> file which should look like this <a href=".sample.env">sample env file</a>.</p>
 
 <h2>Versioning</h2>
 <p>BotANF uses <a href="https://semver.org/">SemVer</a>.
