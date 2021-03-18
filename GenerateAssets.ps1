@@ -11,6 +11,7 @@ if ($PSVersionTable.PSVersion.Major -lt 6) {
 }
 
 $Status = 0; # Number of operations completed.
+$ProjectRoot = [System.IO.Directory]::GetCurrentDirectory();
 
 function InstallPackages
 {
@@ -57,6 +58,7 @@ function InstallPackages
 
 Write-Progress -Activity "Installing NPM Packages" -PercentComplete $Status
 InstallPackages
+Set-Location $ProjectRoot
 $Status = 25
 
 Write-Progress -Activity "Creating env file" -PercentComplete $Status
@@ -68,7 +70,7 @@ MONGO="mongodb+srv://<Account>:<Password>@botanf-db.bg2nc.mongodb.net/<Database>
 $Status = 50
 
 Write-Progress -Activity "Opening folder" -PercentComplete $Status
-Invoke-Item .
+Invoke-Item $ProjectRoot
 $Status = 75
 
 Write-Progress -Activity "Opening VS Code (if it exists)" -PercentComplete $Status
