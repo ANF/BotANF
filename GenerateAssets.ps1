@@ -60,7 +60,7 @@ InstallPackages
 $Status = 25
 
 Write-Progress -Activity "Creating env file" -PercentComplete $Status
-if (Test-Path -Path ".env" -eq $false) {
+if ((Test-Path -Path ".env") -eq ($false)) {
     Write-Output 'TOKEN="Your Discord Bot API Access Key aka token"
 PREFIX="The prefix to run commands for your bot"
 MONGO="mongodb+srv://<Account>:<Password>@botanf-db.bg2nc.mongodb.net/<Database>?retryWrites=true&w=majority"' > '.env'
