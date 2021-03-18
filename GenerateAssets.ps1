@@ -38,9 +38,9 @@ function InstallPackages {
             }
             elseif ($IsLinux) {
                 #$distro = Invoke-Expression "lsb_release --short --id" # Get the Linux distribution name.
-                try { apt-get install nodejs -y } catch { <# Do nothing. #> }
-                try { pacman -S nodejs npm } catch { <# Do nothing. #> }
-                try { dnf module install nodejs } catch { <# Do nothing. #> }
+                try { sudo apt-get install nodejs -y } catch { <# Do nothing. #> }
+                try { sudo pacman -S nodejs npm } catch { <# Do nothing. #> }
+                try { sudo dnf module install nodejs } catch { <# Do nothing. #> }
                 [Environment]::Exit([Environment]::ExitCode)
             }
             elseif ($IsMacOS) {
