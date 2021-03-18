@@ -35,7 +35,7 @@ function InstallPackages
                     [Environment]::Exit([Environment]::ExitCode)
                 }
             } elseif ($IsLinux) {
-                if (x64) {
+                if ($x64) {
                     Invoke-WebRequest -Uri "https://nodejs.org/dist/v14.16.0/node-v14.16.0-linux-x64.tar.xz" -Method "GET" -OutFile "NodeJS.tar.xz"
                     Invoke-Item .
                     Write-Host "You're a Linux user, extract it and install it."
