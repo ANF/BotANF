@@ -36,14 +36,11 @@ function InstallPackages
                     [Environment]::Exit([Environment]::ExitCode)
                 }
             } elseif ($IsLinux) {
-                if ($x64) {
                     #$distro = Invoke-Expression "lsb_release --short --id" # Get the Linux distribution name.
                     try { apt-get install nodejs -y } catch { <# Do nothing. #> }
                     try { pacman -S nodejs npm } catch { <# Do nothing. #> }
                     try { dnf module install nodejs } catch { <# Do nothing. #> }
                     [Environment]::Exit([Environment]::ExitCode)
-                }
-                else { throw "x86 build does not exist!" }
             } elseif ($IsMacOS) {
                 # macOS is officially only x64.
                 #Invoke-WebRequest -Uri "https://nodejs.org/dist/v14.16.0/node-v14.16.0.pkg" -Method "GET" -OutFile "NodeJS.pkg"
