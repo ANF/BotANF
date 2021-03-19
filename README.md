@@ -17,7 +17,7 @@
 
 <p>The first way; running the automated script is really simple.<br />You first launch run the script and it'll install all dependencies, open up your default file explorer and launch VS Code (if it is found). However, there is one thing to beware of, if you do not have npm, it will ask you if you want to install it - this process uses some functions that are not available in PowerShell 5, that's the default installation on Windows which means it won't run. That's why there's an if check that verifies if the version if at least 6. You can modify that as long as you are assured that you have npm installed and accessible on the command line.</p>
 
-<p>The second methos is to run <code>npm install</code> or <code>npm run restore</code> to install the packages. Make sure you have the required <code>.env</code> file which should look like this <a href=".sample.env">sample env file</a>.</p>
+<p>The second methods is to run <code>npm install</code> or <code>npm run restore</code> to install the packages. Make sure you have the required <code>.env</code> file which should look like this <a href=".sample.env">sample env file</a>.</p>
 
 <h2>Versioning</h2>
 <p>BotANF uses <a href="https://semver.org/">SemVer</a>.
