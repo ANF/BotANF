@@ -1,4 +1,4 @@
-import {Message} from "discord.js";
+import { Message } from "discord.js";
 import DiscordClient from "./client/client";
 
 type Nullable<T> = T | null;
@@ -12,8 +12,8 @@ export const Categories: Array<[string, string]> = [
     ["Utility", "Utility tools for the bot - mostly information"],
     ["Moderation", "Moderation tools for the server, use it wisely"],
     ["User", "User commands to customize themselves"],
-    ["Custom Commands", "Custom user commands to have fun and play with"]
-]
+    ["Custom Commands", "Custom user commands to have fun and play with"],
+];
 
 /**
  * The command system for the Discord Client.
@@ -21,7 +21,9 @@ export const Categories: Array<[string, string]> = [
  * constructs it all.
  */
 export default abstract class BaseCommand {
-    static commandInfo: Array<[string, Nullable<string>, boolean]> = new Array();
+    static commandInfo: Array<
+        [string, Nullable<string>, boolean]
+    > = new Array();
 
     constructor(
         private name: string,
@@ -30,7 +32,11 @@ export default abstract class BaseCommand {
         private aliases: Array<string>,
         private hidden: boolean = false
     ) {
-        BaseCommand.commandInfo.push([name, description ??= "Description not provided", hidden]);
+        BaseCommand.commandInfo.push([
+            name,
+            (description ??= "Description not provided"),
+            hidden,
+        ]);
         BaseCommand.commandInfo.sort();
     }
 

@@ -1,8 +1,8 @@
-import {Message, MessageEmbed} from "discord.js";
-import BaseCommand, {Categories} from "../../utils/BaseCommand";
+import { Message, MessageEmbed } from "discord.js";
+import BaseCommand, { Categories } from "../../utils/BaseCommand";
 import DiscordClient from "../../utils/client/client";
 import EmbedColor from "../../utils/helper/EmbedColor";
-import logger, {logLevel} from "../../utils/helper/logger";
+import logger, { logLevel } from "../../utils/helper/logger";
 
 export default class HelpCommand extends BaseCommand {
     constructor() {
@@ -14,7 +14,7 @@ export default class HelpCommand extends BaseCommand {
         let embedFields = 0;
         const helpEmbed: MessageEmbed = new MessageEmbed({
             color: EmbedColor.NULL,
-            title: 'Help Command'
+            title: "Help Command",
         });
         // if (args.includes("Utility")
         //     || args.includes("Moderation")
@@ -40,9 +40,12 @@ export default class HelpCommand extends BaseCommand {
             case "custom Commands":
                 break;
         }
-        if (message.member?.roles.cache.has("Administrator") // If the user has the Admin role
-            || message.member?.roles.cache.has("Staff") // Or the staff role
-            || message.author.id == message.guild?.ownerID) // Or even is the owner of the server
+        if (
+            message.member?.roles.cache.has("Administrator") || // If the user has the Admin role
+            message.member?.roles.cache.has("Staff") || // Or the staff role
+            message.author.id == message.guild?.ownerID
+        )
+            // Or even is the owner of the server
             helpEmbed.addField(Categories[1][0], Categories[1][1]); // Add the moderation module.
         Categories.forEach((element, index) => {
             if (index !== 1) helpEmbed.addField(element[0], element[1]);

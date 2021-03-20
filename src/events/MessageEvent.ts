@@ -1,5 +1,5 @@
 import BaseEvent from "../utils/BaseEvent";
-import {Message} from "discord.js";
+import { Message } from "discord.js";
 import DiscordClient from "../utils/client/client";
 
 export default class MessageEvent extends BaseEvent {
@@ -27,6 +27,8 @@ export default class MessageEvent extends BaseEvent {
     }
 
     private async unknownCMD(message: Message, commandName: string) {
-        await message.channel.send("`" + commandName + "` is not a valid command.");
+        await message.channel.send(
+            "`" + commandName + "` is not a valid command."
+        );
     }
 }

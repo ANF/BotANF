@@ -6,8 +6,7 @@ import DiscordClient from "./client/client";
  * of events which constructs it all.
  */
 export default abstract class BaseEvent {
-    constructor(private name: string) {
-    }
+    constructor(private name: string) {}
 
     getName(): string {
         return this.name;

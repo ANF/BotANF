@@ -1,6 +1,6 @@
 import EmbedColor from "../../utils/helper/EmbedColor";
 import BaseCommand from "../../utils/BaseCommand";
-import {Message, MessageEmbed} from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 import DiscordClient from "../../utils/client/client";
 
 export default class PingCommand extends BaseCommand {

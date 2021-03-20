@@ -1,4 +1,4 @@
-import {Client, ClientOptions, Collection} from "discord.js";
+import { Client, ClientOptions, Collection } from "discord.js";
 import BaseEvent from "../BaseEvent";
 import BaseCommand from "../BaseCommand";
 

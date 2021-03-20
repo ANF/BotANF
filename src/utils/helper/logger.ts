@@ -32,9 +32,11 @@ export class Logger implements loggerOptions {
     constructor(options: loggerOptions) {
         this.minimumLoggingLevel = options.minimumLoggingLevel;
         this.closeAppOnError = options.closeAppOnError;
-        this.colors.color_verbose = options.colors?.color_verbose ?? "\u001b[34m";
+        this.colors.color_verbose =
+            options.colors?.color_verbose ?? "\u001b[34m";
         this.colors.color_info = options.colors?.color_info ?? "\u001b[32m";
-        this.colors.color_warning = options.colors?.color_warning ?? "\u001b[33m";
+        this.colors.color_warning =
+            options.colors?.color_warning ?? "\u001b[33m";
         this.colors.color_error = options.colors?.color_error ?? "\u001b[31m";
         this.debugEnabled = options.debugEnabled ?? false;
     }
@@ -49,8 +51,7 @@ export class Logger implements loggerOptions {
         let color: Nullable<string> = null;
         switch (logType) {
             case logLevel.debug:
-                if (this.debugEnabled == true)
-                    color = this.colors.color_debug;
+                if (this.debugEnabled == true) color = this.colors.color_debug;
                 else return;
                 break;
 
@@ -90,7 +91,7 @@ export class Logger implements loggerOptions {
         console.log(
             `${color}[${logLevel[
                 logType
-                ].toUpperCase()}, ${file}]${color_reset} ${textToLog}`
+            ].toUpperCase()}, ${file}]${color_reset} ${textToLog}`
         );
         if (this.closeAppOnError == true && logType == logLevel.error)
             process.exit(1);
@@ -132,7 +133,7 @@ interface loggerOptions {
         color_warning: string;
         color_error: string;
     };
-    debugEnabled?: boolean,
+    debugEnabled?: boolean;
 }
 
 /**

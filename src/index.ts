@@ -1,19 +1,20 @@
-import {registerCommands, registerEvents} from "./utils/registry";
-import logger, {logLevel} from "./utils/helper/logger";
+import { registerCommands, registerEvents } from "./utils/registry";
+import logger, { logLevel } from "./utils/helper/logger";
 import ClientConfig from "./utils/config/ClientConfig";
 import DiscordClient from "./utils/client/client";
-import {getSettings} from "./utils/client/mongodb";
+import { getSettings } from "./utils/client/mongodb";
 import MongoSettings from "./utils/config/MongoSettings";
 import "dotenv/config";
 
 export const client = new DiscordClient({
     disableMentions: "everyone",
-    ws: {compress: false},
+    ws: { compress: false },
     retryLimit: 10,
 });
 
 async function main(configuration: ClientConfig): Promise<void> {
-    client.prefix = MongoSettings?.Prefix || process.env.PREFIX || client.prefix;
+    client.prefix =
+        MongoSettings?.Prefix || process.env.PREFIX || client.prefix;
     await registerCommands(client, "../commands");
     await registerEvents(client, "../events");
     await client.login(MongoSettings?.Token || process.env.TOKEN);

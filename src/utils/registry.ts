@@ -1,5 +1,5 @@
 import path from "path";
-import {promises as fs} from "fs";
+import { promises as fs } from "fs";
 import DiscordClient from "./client/client";
 
 export async function registerCommands(
@@ -12,7 +12,7 @@ export async function registerCommands(
         const stat = await fs.lstat(path.join(filePath, file));
         if (stat.isDirectory()) registerCommands(client, path.join(dir, file));
         if (file.endsWith(".js") || file.endsWith(".ts")) {
-            const {default: Command} = await import(path.join(dir, file));
+            const { default: Command } = await import(path.join(dir, file));
             const command = new Command();
             client.commands.set(command.getName(), command);
             command.getAliases().forEach((alias: string) => {
@@ -29,7 +29,7 @@ export async function registerEvents(client: DiscordClient, dir: string = "") {
         const stat = await fs.lstat(path.join(filePath, file));
         if (stat.isDirectory()) registerEvents(client, path.join(dir, file));
         if (file.endsWith(".js") || file.endsWith(".ts")) {
-            const {default: Event} = await import(path.join(dir, file));
+            const { default: Event } = await import(path.join(dir, file));
             const event = new Event();
             client.events.set(event.getName(), event);
             client.on(event.getName(), event.run.bind(event, client));
