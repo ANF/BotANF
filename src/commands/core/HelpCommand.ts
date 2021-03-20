@@ -16,11 +16,13 @@ export default class HelpCommand extends BaseCommand {
             color: EmbedColor.NULL,
             title: "Help Command",
         });
+
+        args[0] ??= "_undefined";
         // if (args.includes("Utility")
         //     || args.includes("Moderation")
         //     || args.includes("User")
         //     || "Custom Commands") {
-        switch (args[0].toLowerCase()) {
+        switch (args[0]) {
             case "utils":
             case "utility":
             case "utilities":
