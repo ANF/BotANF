@@ -1,6 +1,6 @@
-/** 
-*   This code will be deleted when before I make a pull request
-* */
+/**
+ *   This code will be deleted when before I make a pull request
+ * */
 
 /*import {registerCommands, registerEvents} from "./utils/registry";
 import logger, {logLevel} from "./utils/helper/logger";
@@ -63,22 +63,22 @@ import Client from "./utils/client/client";
 import CommandHandler from "./utils/commands/CommandHandler";
 import { join } from "path";
 import EventHandler from "./utils/events/EventHandler";
-import Logger, {LogLevel} from "./utils/helper/Logger-test";
+import Logger, { LogLevel } from "./utils/helper/Logger-test";
 
-const client = new Client ({
-    ownerID: [
-        '610423394353152003',
-        '340597234016190487'
-    ]
-}, {
-    retryLimit: 10,
-    ws: { compress: false },
-    disableMentions: 'everyone'
-});
+const client = new Client(
+    {
+        ownerID: ["610423394353152003", "340597234016190487"],
+    },
+    {
+        retryLimit: 10,
+        ws: { compress: false },
+        disableMentions: "everyone",
+    }
+);
 
-new CommandHandler(client, { dir: join(__dirname, './commands'), prefix: '-' });
-new EventHandler(client, { dir: join(__dirname, './events') });
+new CommandHandler(client, { dir: join(__dirname, "./commands"), prefix: "-" });
+new EventHandler(client, { dir: join(__dirname, "./events") });
 
-Logger.log('Test log', LogLevel.WARNING);
+Logger.log("Test log", LogLevel.WARNING);
 
 client.login(process.env.TOKEN);

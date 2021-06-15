@@ -3,9 +3,9 @@ import DiscordClient from "../client/client";
 abstract class Event {
     public client: DiscordClient | null = null;
 
-    constructor(private _name: string){}
+    constructor(private _name: string) {}
 
-    public get name(){
+    public get name() {
         return this._name;
     }
 

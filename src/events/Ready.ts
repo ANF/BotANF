@@ -1,12 +1,12 @@
 import Listener from "../utils/events/Event";
 
 class Ready extends Listener {
-    constructor(){
-        super('ready');
+    constructor() {
+        super("ready");
     }
 
-    async exec(){
-        console.log('Logged in');
+    async exec() {
+        console.log("Logged in");
     }
 }
 

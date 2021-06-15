@@ -1,45 +1,45 @@
 {
-  "name": "botanf",
-  "version": "2.0.0",
-  "description": "A simple discord bot made by ANF-Studios",
-  "private": true,
-  "icon": "./src/images/favicon.ico",
-  "main": "dist/index.js",
-  "scripts": {
-    "start": "tsc && node ./dist/index.js",
-    "transcompile": "tsc --outDir ./dist/",
-    "format": "prettier --write \"**/*.{ts,json,md}\"",
-    "restore": "npm install && npm fund",
-    "test": "node ./dist/index.js && exit 0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ANF/BotANF.git"
-  },
-  "keywords": [
-    "discord bot",
-    "anf-studios"
-  ],
-  "author": {
-    "name": "ANF-Studios",
-    "email": "anforg@outlook.com"
-  },
-  "license": "GPL-3.0",
-  "dependencies": {
-    "discord-buttons": "^3.2.1",
-    "discord.js": "^12.5.1",
-    "dotenv": "^8.2.0",
-    "mongodb": "^3.6.3"
-  },
-  "devDependencies": {
-    "@types/dotenv": "^8.2.0",
-    "@types/mongodb": "^3.6.3",
-    "@types/node": "^14.14.16",
-    "prettier": "2.2.1",
-    "typescript": "^4.1.3"
-  },
-  "bugs": {
-    "url": "https://github.com/ANF/BotANF/issues"
-  },
-  "homepage": "https://github.com/ANF/BotANF#readme"
+    "name": "botanf",
+    "version": "2.0.0",
+    "description": "A simple discord bot made by ANF-Studios",
+    "private": true,
+    "icon": "./src/images/favicon.ico",
+    "main": "dist/index.js",
+    "scripts": {
+        "start": "tsc && node ./dist/index.js",
+        "transcompile": "tsc --outDir ./dist/",
+        "format": "prettier --write \"**/*.{ts,json,md}\"",
+        "restore": "npm install && npm fund",
+        "test": "node ./dist/index.js && exit 0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ANF/BotANF.git"
+    },
+    "keywords": [
+        "discord bot",
+        "anf-studios"
+    ],
+    "author": {
+        "name": "ANF-Studios",
+        "email": "anforg@outlook.com"
+    },
+    "license": "GPL-3.0",
+    "dependencies": {
+        "discord-buttons": "^3.2.1",
+        "discord.js": "^12.5.1",
+        "dotenv": "^8.2.0",
+        "mongodb": "^3.6.3"
+    },
+    "devDependencies": {
+        "@types/dotenv": "^8.2.0",
+        "@types/mongodb": "^3.6.3",
+        "@types/node": "^14.14.16",
+        "prettier": "2.2.1",
+        "typescript": "^4.1.3"
+    },
+    "bugs": {
+        "url": "https://github.com/ANF/BotANF/issues"
+    },
+    "homepage": "https://github.com/ANF/BotANF#readme"
 }

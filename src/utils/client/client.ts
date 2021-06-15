@@ -12,30 +12,34 @@ class DiscordClient extends Client {
     private _events: Collection<string, Event> = new Collection();
     private _categories: Collection<string, Set<Command>> = new Collection();
 
-    constructor(private _botOptions: Partial<Options>, clientOptions?: ClientOptions){
+    constructor(
+        private _botOptions: Partial<Options>,
+        clientOptions?: ClientOptions
+    ) {
         super(clientOptions);
         distub(this);
     }
 
-    public get botOptions(){
+    public get botOptions() {
         return this._botOptions;
     }
 
-    public get commands(){
+    public get commands() {
         return this._commands;
     }
 
-    public get events(){
+    public get events() {
         return this._events;
     }
 
-    public get categories(){
+    public get categories() {
         return this._categories;
     }
 
-    public isOwner(id: string): boolean{
-        if(this._botOptions.ownerID == null) throw new Error('Missing ownerID in client options');
-        const owner = this._botOptions.ownerID.find(user => user === id);
+    public isOwner(id: string): boolean {
+        if (this._botOptions.ownerID == null)
+            throw new Error("Missing ownerID in client options");
+        const owner = this._botOptions.ownerID.find((user) => user === id);
         return owner != null;
     }
 }

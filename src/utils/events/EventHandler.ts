@@ -7,30 +7,30 @@ interface Options {
 }
 
 class EventHandler {
-    constructor(private client: DiscordClient, private options: Options){
+    constructor(private client: DiscordClient, private options: Options) {
         this.setup();
     }
 
-    private async setup(): Promise<void>{
+    private async setup(): Promise<void> {
         await this.loadAll();
 
-        this.client.events.forEach(event => {
+        this.client.events.forEach((event) => {
             this.client.on(event.name, (...args) => event.exec(args));
         });
     }
 
-    private async loadFolder(path: string): Promise<void>{
+    private async loadFolder(path: string): Promise<void> {
         const files = await fs.readdir(path);
-        for(const file of files){
+        for (const file of files) {
             const stat = await fs.lstat(join(path, file));
 
-            if(stat.isDirectory()){
+            if (stat.isDirectory()) {
                 await this.loadFolder(join(this.options.dir, file));
             }
 
-            if(file.endsWith('.js')){
+            if (file.endsWith(".js")) {
                 const { default: Event } = await import(join(path, file));
-                
+
                 const listener = new Event();
                 listener.client = this.client;
 
@@ -39,7 +39,7 @@ class EventHandler {
         }
     }
 
-    private async loadAll(): Promise<void>{
+    private async loadAll(): Promise<void> {
         await this.loadFolder(this.options.dir);
     }
 }

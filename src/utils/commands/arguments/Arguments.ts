@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 import DiscordClient from "../../client/client";
-import {InvalidInput} from "../../helper/Unauthorized";
+import { InvalidInput } from "../../helper/Unauthorized";
 import ArgumentTypes from "./ArgumentTypes";
 
 export interface ArgumentOptions {
@@ -16,42 +16,46 @@ class Arguments {
     private _error: boolean = false;
     private shiftList: boolean = true;
 
-    constructor(private client: DiscordClient, private args: ArgumentOptions[], private message: Message, private content: string[]){
+    constructor(
+        private client: DiscordClient,
+        private args: ArgumentOptions[],
+        private message: Message,
+        private content: string[]
+    ) {
         this.parse();
     }
 
-    private parse(){
+    private parse() {
         //TODO: rethink about the list manipulation, I'm not sure if it's all correct
-        for(const arg of this.args){
-            const parsedArg = this.cast(this.content[0] || '', arg);
-            if(this.shiftList){
+        for (const arg of this.args) {
+            const parsedArg = this.cast(this.content[0] || "", arg);
+            if (this.shiftList) {
                 this.content.shift();
             }
 
-            if(!this._error){
+            if (!this._error) {
                 this._parsedArguments[arg.id] = parsedArg;
                 break;
-            }
-            else {
+            } else {
                 this.message.channel.send(InvalidInput(arg));
             }
         }
 
         this._parsedArguments = {
             ...this._parsedArguments,
-            args: [...this.content]
-        }
+            args: [...this.content],
+        };
     }
 
-    get parsedArguments(){
+    get parsedArguments() {
         return this._parsedArguments;
     }
 
-    get error(){
+    get error() {
         return this._error;
     }
 
-    private cast(phrase: string, arg: ArgumentOptions): any{
+    private cast(phrase: string, arg: ArgumentOptions): any {
         this.shiftList = true;
 
         const client = this.client;
@@ -62,7 +66,7 @@ class Arguments {
 
         let data: any;
 
-        switch(arg.type){
+        switch (arg.type) {
             case ArgumentTypes.STRING:
                 data = phrase;
                 break;
@@ -92,19 +96,17 @@ class Arguments {
                 break;
         }
 
-        if(data == null){
+        if (data == null) {
             //We keep the message as it is
             this.shiftList = false;
 
-            if(isNullable){
-                if(defaultValue != null){
+            if (isNullable) {
+                if (defaultValue != null) {
                     return defaultValue;
-                }
-                else {
+                } else {
                     return data;
                 }
-            }
-            else {
+            } else {
                 this._error = true;
                 return;
             }
@@ -113,29 +115,28 @@ class Arguments {
         return data;
     }
 
-    private getUserIdFromMention(mention: string): string{
-        if(mention.startsWith('<@') && mention.endsWith('>')){
+    private getUserIdFromMention(mention: string): string {
+        if (mention.startsWith("<@") && mention.endsWith(">")) {
             mention = mention.slice(2, -1);
-            if(mention.startsWith('!')) mention = mention.slice(1);
+            if (mention.startsWith("!")) mention = mention.slice(1);
             return mention;
         }
         return mention;
     }
 
-    private getRoleIdFromMention(mention: string): string{
-        if(mention.startsWith('<&') && mention.endsWith('>')){
+    private getRoleIdFromMention(mention: string): string {
+        if (mention.startsWith("<&") && mention.endsWith(">")) {
             return mention.slice(2, -1);
         }
         return mention;
     }
 
-    private getChannelIdFromMention(mention: string): string{
-        if(mention.startsWith('<#') && mention.endsWith('>')){
+    private getChannelIdFromMention(mention: string): string {
+        if (mention.startsWith("<#") && mention.endsWith(">")) {
             return mention.slice(2, -1);
         }
         return mention;
     }
 }
-
 
 export default Arguments;
