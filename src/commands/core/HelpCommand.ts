@@ -14,12 +14,6 @@ class HelpCommand extends Command{
                     type: ArgumentTypes.STRING,
                     nullable: true,
                     description: 'The name of command or category by putting `c-` before the name'
-                },
-                {
-                    id: 'test',
-                    type: ArgumentTypes.STRING,
-                    nullable: true,
-                    description: 'Just a test to check if the help command works'
                 }
             ],
             description: 'Gives information about a specified command or the list of all commands with their categories',

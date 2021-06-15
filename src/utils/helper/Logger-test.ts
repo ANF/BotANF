@@ -18,13 +18,7 @@ interface Options {
      */
     minimumLoggingLevel: LogLevel;
     closeAppOnError: boolean;
-    colors: {
-        debug: string;
-        verbose: string;
-        info: string;
-        warning: string;
-        error: string;
-    };
+    colors: Record<LogLevel, string>;
     debugEnabled: boolean,
 }
 
@@ -33,16 +27,16 @@ class Logger {
         minimumLoggingLevel: LogLevel.VERBOSE,
         closeAppOnError: true,
         colors: {
-            debug: '',
-            verbose: '\u001b[34m',
-            info: '\u001b[32m',
-            warning: '\u001b[33m',
-            error: '\u001b[31m'
+            [LogLevel.DEBUG]: '',
+            [LogLevel.VERBOSE]: '\u001b[34m',
+            [LogLevel.INFO]: '\u001b[32m',
+            [LogLevel.WARNING]: '\u001b[33m',
+            [LogLevel.ERROR]: '\u001b[31m'
         },
         debugEnabled: true
     };
 
-    public static log(text: string, logType: LogLevel, file: string){
+    public static log(text: string, logType: LogLevel){
         if(logType !== LogLevel.DEBUG && !this.hasMinimumLevel(logType)){
             return;
         }
@@ -54,7 +48,8 @@ class Logger {
         const color = this.getColor(logType);
         const colorReset = "\u001b[0m";
 
-        console.log(`${color}[${LogLevel[logType]}, ${file}] ${colorReset} ${text}`);
+        //File name will be add later
+        console.log(`${color}[${LogLevel[logType]}]${colorReset} ${text}`);
 
         if(logType === LogLevel.ERROR && this.options.closeAppOnError){
             process.exit(1);
@@ -62,39 +57,11 @@ class Logger {
     }
 
     private static getColor(logType: LogLevel): string{
-        let color: string = '';
-
-
-        switch (logType){
-            case LogLevel.DEBUG:
-                color = this.options.colors.debug;
-                break;
-
-            case LogLevel.VERBOSE:
-                color = this.options.colors.verbose;
-                break;
-
-            case LogLevel.INFO:
-                color = this.options.colors.info;
-                break;
-
-            case LogLevel.WARNING:
-                color = this.options.colors.warning;
-                break;
-
-            case LogLevel.ERROR:
-                color = this.options.colors.error;
-                break;
-        }
-        return color;
+        return this.options.colors[logType];
     }
 
     private static hasMinimumLevel(logType: LogLevel): boolean {
-        if(logType < this.options.minimumLoggingLevel){
-
-            return false;
-        }
-        return true;
+        return logType >= this.options.minimumLoggingLevel;    
     }
 }
 

@@ -79,6 +79,6 @@ const client = new Client ({
 new CommandHandler(client, { dir: join(__dirname, './commands'), prefix: '-' });
 new EventHandler(client, { dir: join(__dirname, './events') });
 
-Logger.log('something', LogLevel.WARNING, 'test');
+Logger.log('Test log', LogLevel.WARNING);
 
 client.login(process.env.TOKEN);
