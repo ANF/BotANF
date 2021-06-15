@@ -1,29 +1,43 @@
-import {Client, ClientOptions, Collection} from "discord.js";
-import BaseEvent from "../BaseEvent";
-import BaseCommand from "../BaseCommand";
+import { Client, ClientOptions, Collection } from "discord.js";
+import Command from "../commands/Command";
+import Event from "../events/Event";
+import distub from "discord-buttons";
 
-export default class DiscordClient extends Client {
-    private _commands = new Collection<string, BaseCommand>();
-    private _events = new Collection<string, BaseEvent>();
-    private _prefix: string = ","; // The original BotANF™ prefix.
+interface Options {
+    ownerID: string[];
+}
 
-    constructor(options?: ClientOptions) {
-        super(options);
+class DiscordClient extends Client {
+    private _commands: Collection<string, Command> = new Collection();
+    private _events: Collection<string, Event> = new Collection();
+    private _categories: Collection<string, Set<Command>> = new Collection();
+
+    constructor(private _botOptions: Partial<Options>, clientOptions?: ClientOptions){
+        super(clientOptions);
+        distub(this);
     }
 
-    get commands(): Collection<string, BaseCommand> {
+    public get botOptions(){
+        return this._botOptions;
+    }
+
+    public get commands(){
         return this._commands;
     }
 
-    get events(): Collection<string, BaseEvent> {
+    public get events(){
         return this._events;
     }
 
-    get prefix(): string {
-        return this._prefix;
+    public get categories(){
+        return this._categories;
     }
 
-    set prefix(prefix: string) {
-        this._prefix = prefix;
+    public isOwner(id: string): boolean{
+        if(this._botOptions.ownerID == null) throw new Error('Missing ownerID in client options');
+        const owner = this._botOptions.ownerID.find(user => user === id);
+        return owner != null;
     }
 }
+
+export default DiscordClient;

@@ -1,3 +1,6 @@
+/** 
+*   @Deprecated This class is still here because of the mongodb code that hasn't been rewrited
+* */
 type Nullable<T> = T | null;
 const color_reset = "\u001b[0m";
 

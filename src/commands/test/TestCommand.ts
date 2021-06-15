@@ -1,18 +1,18 @@
-import {Message} from "discord.js";
-import BaseCommand from "../../utils/BaseCommand";
-import DiscordClient from "../../utils/client/client";
-import {getTextFromMongoDB} from "../../utils/client/mongodb";
-import logger from "../../utils/helper/logger";
+import Command from "../../utils/commands/Command";
+import { Message } from "discord.js";
 
-export default class TestCommand extends BaseCommand {
-    text: any = null;
-
-    constructor() {
-        super("test", null, "A test command for BotANF.", ["testing"]);
+class TestCommand extends Command {
+    constructor(){
+        super('test', {
+            description: 'Just a test command',
+            category: 'random',
+            aliases: ['testt']
+        });
     }
 
-    async run(client: DiscordClient, message: Message, args: Array<string>) {
-        this.text ??= await getTextFromMongoDB(logger);
-        message.channel.send(this.text?.get);
+    exec(message: Message, { args }: { args: string[] }){
+        message.channel.send('Hello ' + args.join(''));
     }
 }
+
+export default TestCommand;

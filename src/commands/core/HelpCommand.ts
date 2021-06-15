@@ -1,84 +1,138 @@
-import {Message, MessageEmbed} from "discord.js";
-import BaseCommand, {Categories} from "../../utils/BaseCommand";
-import DiscordClient from "../../utils/client/client";
+import { Collection, Message, MessageEmbed, PermissionString } from "discord.js";
+import { MessageActionRow, MessageButton } from "discord-buttons";
+import ArgumentTypes from "../../utils/commands/arguments/ArgumentTypes";
+import Command from "../../utils/commands/Command";
 import EmbedColor from "../../utils/helper/EmbedColor";
-import logger, {logLevel} from "../../utils/helper/logger";
 
-export default class HelpCommand extends BaseCommand {
-    constructor() {
-        super("help", "User", "Shows a list of commands", ["commands"]);
+class HelpCommand extends Command{
+    constructor(){
+        super('help', {
+            aliases: ['h'],
+            args: [
+                {
+                    id: 'name',
+                    type: ArgumentTypes.STRING,
+                    nullable: true,
+                    description: 'The name of command or category by putting `c-` before the name'
+                },
+                {
+                    id: 'test',
+                    type: ArgumentTypes.STRING,
+                    nullable: true,
+                    description: 'Just a test to check if the help command works'
+                }
+            ],
+            description: 'Gives information about a specified command or the list of all commands with their categories',
+            usage: '`-help [category or command]`'
+        });
     }
 
-    // TODO: Write the help command and program the logic.
-    async run(client: DiscordClient, message: Message, args: Array<string>) {
-        let embedFields = 0;
-        const helpEmbed: MessageEmbed = new MessageEmbed({
-            color: EmbedColor.NULL,
-            title: 'Help Command'
+    private isUserAllowedToSeeCommand(userPermissions: PermissionString[], command: Command): boolean{
+        const commandPermissions: PermissionString[] = command.options.userPermissions || [];
+        return commandPermissions.every(value => userPermissions.includes(value));
+    }
+
+    private getCommandsFromCategory(message: Message, categoryName: string): Command[]{
+        const category = this.client?.categories.get(categoryName);
+
+        const commands: Array<Command> = new Array();
+
+        category?.forEach(cmd => {
+            if(this.client?.isOwner(message.author.id)){
+                commands.push(cmd);
+            }
+            else if(this.isUserAllowedToSeeCommand(message.member?.permissions.toArray() || [], cmd)){
+                commands.push(cmd);
+            }
         });
-        // if (args.includes("Utility")
-        //     || args.includes("Moderation")
-        //     || args.includes("User")
-        //     || "Custom Commands") {
-        switch (args[0].toLowerCase()) {
-            case "utils":
-            case "utility":
-            case "utilities":
-                break;
 
-            case "moderation":
-            case "mod":
-            case "administration":
-                break;
+        return commands;
+    }
 
-            case "user":
-            case "customization":
-                break;
+    private getCategories(message: Message): Collection<string, Command[]>{
+        const categories: Collection<string, Command[]> = new Collection();
 
-            case "cc":
-            case "ccl":
-            case "custom Commands":
-                break;
+        this.client?.categories.forEach((_, category)=> {
+            const commands = this.getCommandsFromCategory(message, category)
+
+            if(commands.length > 0){
+                //we set all the categories to lowercase to have insensitive search for categories and commands ex: Say and say are valid and we want to accept both
+                categories.set(category.toLowerCase(), commands);
+            }
+        });
+
+        return categories;
+    }
+
+    /**
+    *Temporary function, it takes a string and make it all lowercase except for the first letter
+    */
+    private formatWord(text: string): string{
+        return text[0].toUpperCase() + text.slice(1).toLowerCase();
+    }
+
+    public exec(message: Message, { name }: { name: string }){
+        name = name.toLowerCase();
+
+        const embed = new MessageEmbed();
+        embed.setColor(EmbedColor.BLUE);
+
+        const previousButton = new MessageButton()
+            .setID('help-previous')
+            .setLabel('Previous')
+            //Because the lib hasn't a good typescript support for now
+            //@ts-ignore
+            .setStyle('grey');
+
+        const nextButton = new MessageButton()
+            .setID('help-next')
+            .setLabel('Next')
+            //@ts-ignore
+            .setStyle('grey');
+
+
+        const helpButtons = new MessageActionRow().addComponents([previousButton, nextButton]);
+
+        const categories = this.getCategories(message);
+
+        if(name){
+            //Help for a category
+            if(name.startsWith('c-')){
+                name = name.slice(2);
+                const category = categories.get(name);
+
+                embed.setTitle(`Command help for the ${name} category`);
+                category?.forEach(cmd => {
+                    embed.addField(`**${this.formatWord(cmd.id)}:**`, cmd.options?.description || 'No description provided');
+                });
+            }
+            else {
+                const cmd = this.client?.commands.get(name);
+
+                embed.setTitle(`Command help for ${name}`)
+                embed.setDescription(cmd?.options?.description || 'No description provided');
+                embed.addField('Usage:', cmd?.options?.usage || 'No usage example provided')
+                embed.addField('Parameters:', cmd?.options?.args?.map(arg => `**${this.formatWord(arg.id)}:** ${(arg.nullable ? '*(Optional)* ' : '')}${arg.description || 'No description provided'}`).join('\n'));
+            }
+            message.channel.send(embed);
         }
-        if (message.member?.roles.cache.has("Administrator") // If the user has the Admin role
-            || message.member?.roles.cache.has("Staff") // Or the staff role
-            || message.author.id == message.guild?.ownerID) // Or even is the owner of the server
-            helpEmbed.addField(Categories[1][0], Categories[1][1]); // Add the moderation module.
-        Categories.forEach((element, index) => {
-            if (index !== 1) helpEmbed.addField(element[0], element[1]);
-        });
-        helpEmbed.title = "Here are modules that you can access!";
-        await message.channel.send(helpEmbed);
-    }
+        else {
+            //TODO: Add button interactions and pages, each category will have a page
+            embed.setTitle('BotANF Help');
+            embed.setDescription(`BotANF is discord bot that helps in some stuff like moderation, polls etc. Here's the list of all categories followed with their commands, use \`-help c-<category name>\` to get the list of commands for a category or use \`-help <command name>\` to get the details of a specific command`);
+            categories.forEach((commands, category) => {
+                const value = `\`${commands.map(cmd => cmd.id).join('` `')}\``
+                embed.addField(`${this.formatWord(category)}:`, value);
+            });
 
-    private static isAdmin(data: Message): boolean {
-        return data.author.id == data.guild?.ownerID;
+            message.channel.send('Help', {
+                //@ts-ignore
+                component: helpButtons,
+                embed: embed
+            });
+        }
+
     }
 }
 
-/*
-      if (BaseCommand.commandInfo[index][2] == false  // If the command isn't hidden,
-          && embedFields < 5) { // and the fields number in the current embed is less than 5.
-        helpEmbed.addField(value[0], // The name of the command.
-          value[1], // The description of the command.
-          false); // This is the inline value; for the discord embed.
-        ++embedFields; // Increment this value.
-*/
-
-/*
-        BaseCommand.commandInfo.forEach((value, index) => {
-            // This part is fine but as more commands get added,
-            // the embed amount needs to be limited, perhaps
-            // somewhere around 5 commands per embed and
-            // I think we should do a reaction embed
-            // as it has been requested a lot of times.
-            if (!BaseCommand.commandInfo[index][2]  // If the command isn't hidden,
-                && embedFields < 5) { // and the fields number in the current embed is less than 5.
-                helpEmbed.addField(value[0], // The name of the command.
-                    value[1], // The description of the command.
-                    false); // This is the inline value; for the discord embed.
-                ++embedFields; // Increment this value.
-            }
-            logger.log(`${embedFields}`, logLevel.debug, 'HelpCommand')
-        });
- */
+export default HelpCommand;
